@@ -5,20 +5,21 @@ Copyright (c) 2024 @notV3NOM
 See the README.md file for licensing and disclaimer information.
 """
 
-import discord
-import discord.ext
 import os
 import json
 import asyncio
+import discord
 import dateparser
 import datetime as dt
 
-from discord import app_commands
-from slugify import slugify
 from typing import Literal
+from slugify import slugify
+from discord import app_commands
 
-from .config import BOT_TIMING, DEFAULT_SYSTEM_MESSAGE, BOT_NAME, REMINDER_ICON_URL, LLM
+from .tools import web_search
 from .prompts import PROMPT_EXPAND_TEMPLATE, FIND_TIME_TEMPLATE, PROMPT_TEMPLATE
+from .session import SESSIONS, SYSTEM_MESSAGE, CHAT_SESSION, TOOLS, TOOL_OPTIONS
+from .config import BOT_TIMING, DEFAULT_SYSTEM_MESSAGE, BOT_NAME, REMINDER_ICON_URL, LLM
 from .llm import (
     chat,
     new_session,
@@ -28,8 +29,6 @@ from .llm import (
     IMAGE_MODELS,
     personas,
 )
-from .session import SESSIONS, SYSTEM_MESSAGE, CHAT_SESSION, TOOLS, TOOL_OPTIONS
-from .tools import run_searches
 
 persona_choices = [
     app_commands.Choice(name=persona, value=persona) for persona in personas.keys()
@@ -263,18 +262,15 @@ def setup_commands(client: discord.Client, reminder_manager):
     async def web_command(interaction: discord.Interaction, question: str):
         try:
             await interaction.response.defer()
-            search_results, search_result_urls = await run_searches(question)
+            search_results = web_search(question)
             answer = await asyncio.to_thread(
                 chat,
                 PROMPT_TEMPLATE.format(
-                    context="\n".join(search_results), question=question
+                    context=search_results, question=question
                 ),
                 temp_session(),
             )
             embed = discord.Embed(title=question, description=answer)
-            embed.add_field(
-                name="Sources", value="\n".join(search_result_urls), inline=False
-            )
             await interaction.followup.send(embed=embed)
         except Exception as e:
             await interaction.followup.send(f"Error: {e}", ephemeral=True)

@@ -5,17 +5,17 @@ Copyright (c) 2024 @notV3NOM
 See the README.md file for licensing and disclaimer information.
 """
 
-import datetime as dt
-import requests
 import os
-import discord
 import re
-import asyncio
 import uuid
+import discord
+import asyncio
+import requests
+import datetime as dt
 
-from .config import BOT_TIMING, BOT_NAME, EXTENSION_MAPPING, logger
-from .llm import chat, profanity, fallback_picker
 from .session import SESSIONS, CHAT_SESSION
+from .llm import chat, profanity, fallback_picker
+from .config import BOT_TIMING, BOT_NAME, EXTENSION_MAPPING, logger
 
 
 def extract_artifacts(llm_reponse: str):

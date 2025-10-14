@@ -7,11 +7,10 @@ This work is licensed under the Creative Commons Attribution-NonCommercial-Share
 See the README.md file for licensing and disclaimer information.
 """
 
-import discord
-import discord.ext
-from discord import app_commands
-
 import asyncio
+import discord
+
+from discord import app_commands
 
 from components.config import GUILD, DISCORD_BOT_TOKEN
 from components.reminder import ReminderManager

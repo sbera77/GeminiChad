@@ -62,9 +62,6 @@ CLOUDFLARE_API_TOKEN = os.environ.get("CLOUDFLARE_API_TOKEN")
 SD_XL_BASE_URL = f"https://api.cloudflare.com/client/v4/accounts/{CLOUDFLARE_ACCOUNT_ID}/ai/run/@cf/stabilityai/stable-diffusion-xl-base-1.0"
 SCHNELL_BASE_URL = f"https://api.cloudflare.com/client/v4/accounts/{CLOUDFLARE_ACCOUNT_ID}/ai/run/@cf/black-forest-labs/flux-1-schnell"
 
-JINA_BASE_URL = "https://r.jina.ai/"
-JINA_HEADERS = {"Accept": "application/json"}
-
 REMINDER_ICON_URL = "https://cdn-icons-png.flaticon.com/512/10509/10509199.png"
 
 EXTENSION_MAPPING = {
@@ -78,9 +75,4 @@ EXTENSION_MAPPING = {
     "html": "html",
     "css": "css",
     "json": "json",
-}
-
-SEARXNG_BASE_URL = "https://shb777-search.hf.space/"
-SEARXNG_HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
 }

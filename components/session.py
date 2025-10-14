@@ -7,13 +7,13 @@ See the README.md file for licensing and disclaimer information.
 
 from collections import defaultdict
 
-from .config import DEFAULT_SYSTEM_MESSAGE
 from .llm import new_session
+from .config import DEFAULT_SYSTEM_MESSAGE
 from .tools import web_search, code_execution, calculator, image_generation, clock
 
+TOOLS = "TOOLS"
 CHAT_SESSION = "CHAT_SESSION"
 SYSTEM_MESSAGE = "SYSTEM_MESSAGE"
-TOOLS = "TOOLS"
 
 TOOL_OPTIONS = {
     "Clock": clock,
