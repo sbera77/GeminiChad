@@ -1,7 +1,7 @@
 ## GeminiChad
 An experimental LLM-based discord bot
 
-[Demo](https://www.youtube.com/watch?v=RdjJkljXPqU)
+[Demo](https://drive.google.com/file/d/1Tz4rcWnbjon9tyGmYDxArrm9hIDI27Mn/view?usp=sharing)
 
 It uses Gemini (Multimodal) and Cloudflare/Huggingface for Image Generation
 
